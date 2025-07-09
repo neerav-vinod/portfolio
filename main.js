@@ -8,6 +8,13 @@ import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUnifo
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 
+const manager = new THREE.LoadingManager();
+
+manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+};
+
+
 let intersectObject = '';
 const intersectObjects = [];
 const intersectObjectsNames = [
@@ -190,7 +197,7 @@ const sizes = { width: window.innerWidth, height: window.innerHeight };
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
+renderer.shadowMap.enabled = false;
 
 
 // === Lights ===
@@ -218,7 +225,7 @@ controls.maxDistance = 1;
 controls.update();
 
 // === Load 3D Model ===
-const loader = new GLTFLoader();
+const loader = new GLTFLoader(manager);
 loader.load("./Portfolio Assets.glb", (glb) => {
   glb.scene.traverse(child => {
     if (intersectObjectsNames.includes(child.name)) {
