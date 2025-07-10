@@ -60,14 +60,51 @@ const interactiveItems = {
   RetroMouse_M_RetroKeyboardMouse_0:{
     title:"Carefull !!!",
     description:`
-          <video 
-  src="./rickroll.mp4"  
-  autoplay 
-  playsinline 
-  loop 
-  style="width:99%; height:99%; border-radius:8px;">
-</video>
-        `
+  <div style="position: relative; width: 100%; height: auto; font-family: 'Press Start 2P', monospace;">
+    <!-- Retro Spinner -->
+    <div id="video-spinner" style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      text-align: center;
+      color: lime;
+      font-size: 12px;
+      background: black;
+      border: 2px solid lime;
+      padding: 10px;
+      box-shadow: 0 0 10px lime;
+    ">
+      <div style="
+        width: 24px;
+        height: 24px;
+        margin: 0 auto 8px;
+        background: lime;
+        animation: blink 0.6s steps(1) infinite;
+      "></div>
+      LOADING...
+    </div>
+
+    <!-- Video -->
+    <center><video id="rickroll-video" 
+      src="./rickroll.mp4"  
+      autoplay  
+      loop 
+      playsinline 
+      style="width: 60%; height:"70%" border-radius: 8px; display: block;">
+    </video></center>
+  </div>
+
+  <style>
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  </style>
+
+`
   },
   FloppyDisk_Red_M_FloppyDisk_0:{
     title:"Heyyy Thanks !!!!!",
@@ -149,6 +186,8 @@ const description = document.querySelector('.modal');
 const siteAudio = new Audio('audio.mp3');
 let walkmanPlaying = false;
 
+
+
 function openModal(id) {
   const data = interactiveItems[id];
   if (data) {
@@ -173,8 +212,18 @@ function openModal(id) {
     }
   }
   if(id == 'RetroMouse_M_RetroKeyboardMouse_0'){
+    
     siteAudio.pause();
     walkmanPlaying=false;
+
+    const vid = document.getElementById("rickroll-video");
+const spinner = document.getElementById("video-spinner");
+
+if (vid && spinner) {
+  vid.addEventListener('canplaythrough', () => {
+    spinner.style.display = 'none';
+  });
+}
   }
 }
 
