@@ -10,9 +10,17 @@ const pointer = new THREE.Vector2();
 
 const manager = new THREE.LoadingManager();
 
+const progresBar = document.getElementById('progress-bar')
+
+const container = document.querySelector('.container')
+
 manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
-	console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+	progresBar.value = (itemsLoaded/itemsTotal)*100
 };
+
+manager.onLoad = function(){
+  container.style.display = 'none'
+}
 
 let intersectObject = '';
 const intersectObjects = [];
