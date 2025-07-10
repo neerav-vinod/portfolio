@@ -14,13 +14,18 @@ const progresBar = document.getElementById('progress-bar')
 
 const container = document.querySelector('.container')
 
-manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
+const siteAudio = new Audio('audio.mp3');
+let walkmanPlaying = false;
+
+siteAudio.addEventListener('canplaythrough',()=>{
+  manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
 	progresBar.value = (itemsLoaded/itemsTotal)*100
 };
 
 manager.onLoad = function(){
   container.style.display = 'none'
 }
+})
 
 let intersectObject = '';
 const intersectObjects = [];
@@ -183,8 +188,6 @@ function processCommand(cmd) {
 
 const title = document.querySelector('.modal_title');
 const description = document.querySelector('.modal');
-const siteAudio = new Audio('audio.mp3');
-let walkmanPlaying = false;
 
 
 
