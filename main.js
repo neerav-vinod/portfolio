@@ -65,7 +65,6 @@ const interactiveItems = {
   RetroMouse_M_RetroKeyboardMouse_0:{
     title:"Carefull !!!",
     description:`
-  <div style="position: relative; width: 100%; height: auto; font-family: 'Press Start 2P', monospace;">
     <!-- Retro Spinner -->
     <div id="video-spinner" style="
       position: absolute;
@@ -97,9 +96,8 @@ const interactiveItems = {
       autoplay  
       loop 
       playsinline 
-      style="width: 60%; height:"70%" border-radius: 8px; display: block;">
+      style="width: 80%; height:"70%" border-radius: 8px; display: block;">
     </video></center>
-  </div>
 
   <style>
     @keyframes blink {
@@ -116,6 +114,31 @@ const interactiveItems = {
     description:`
     <center><img style="height:50%;" src="./cat-kiss.gif"/></center>
     <center>Thank You For Visiting My Site You are a Legend!!</center>
+    `
+  },
+  CPU:{
+    title:"Projects",
+    description:`
+    <div style="display: flex; flex-direction: column;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin:0.5rem">
+    <div>Chat App</div>
+    <div><a href="https://github.com/neerav-vinod/chat-app" target="_blank">View on GitHub</a></div>
+  </div>
+  <div style='margin:0.5rem'>A real-time chat application built for seamless communication with a clean UI and responsive design.</div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin:0.5rem">
+    <div>MY-Rigg</div>
+    <div><a href="https://github.com/neerav-vinod/My-RIGG" target="_blank">View on GitHub</a></div>
+  </div>
+  <div style='margin:0.5rem'>A E Commerce Store For PC Parts! </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin:0.5rem">
+    <div>Netflix Clone</div>
+    <div><a href="https://github.com/neerav-vinod/netflix-clone" target="_blank">View on GitHub</a></div>
+  </div>
+  <div style='margin:0.5rem'>A Basic Netflix clone with more emphasis on Frontent</div>
+
+</div>
     `
   }
 
@@ -157,9 +180,10 @@ function appendOutput(text) {
 function processCommand(cmd) {
   switch(cmd) {
     case 'help':
-      appendOutput(`Available commands:
+      appendOutput(`Available commands:<br>
   abt     - About Me <br>
   skills  - My Skillset <br>
+  exp     - My Experience <br>
   res     - Download Resume <br>
   help    - Show available commands`);
       break;
@@ -179,11 +203,46 @@ function processCommand(cmd) {
       appendOutput("Downloading resume...");
       downloadResume();
       break;
-    case '':
+    case '': 
       break;
+    case 'exp':appendOutput(` metquay/ <br>
+├── role: Junior Software Engineer – Support <br>
+├── duration: May 2025 – Present <br>
+├── description: <br>
+│   ├── Supporting and debugging backend systems <br>
+│   ├── Working closely with dev team to resolve issues <br>
+│   └── Handling client queries and improving product stability <br>
+
+ logicinfeel/ <br>
+├── role: Software Developer <br>
+├── duration: Feb 2024 – July 2024 <br>
+├── description: <br>
+│   ├── Built and maintained web applications <br>
+│   ├── Contributed to both frontend and backend code <br>
+│   └── Delivered features and bug fixes in agile cycles <br>
+
+luminar-technolab/ <br>
+├── role: MERN Stack Developer – Intern <br>
+├── duration: June 2023 – Jan 2024 <br>
+├── description: <br>
+│   ├── Developed full-stack apps using MongoDB, Express, React, Node <br>
+│   ├── Built REST APIs and dynamic UIs <br>
+│   └── Hands-on learning with real-world project tasks <br>
+    `)
+    break;
     default:
       appendOutput(`'${cmd}' is not recognized as a command. Type 'help' to see available commands.`);
   }
+}
+
+function downloadResume() {
+  const link = document.createElement('a');
+  link.href = 'resume.pdf'; // Your resume file path
+  link.download = 'Neerav-Resume.pdf';
+  link.style.display = 'none'; // Invisible
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 const title = document.querySelector('.modal_title');
@@ -220,7 +279,7 @@ function openModal(id) {
     walkmanPlaying=false;
 
     const vid = document.getElementById("rickroll-video");
-const spinner = document.getElementById("video-spinner");
+    const spinner = document.getElementById("video-spinner");
 
 if (vid && spinner) {
   vid.addEventListener('canplaythrough', () => {
@@ -228,6 +287,9 @@ if (vid && spinner) {
   });
 }
   }
+
+ 
+  
 }
 
 
@@ -282,6 +344,8 @@ controls.minPolarAngle = Math.PI / 4; // 45 degrees – prevents looking straigh
 controls.minDistance = -4;
 controls.maxDistance = 1;
 controls.update();
+
+
 
 // === Load 3D Model ===
 const loader = new GLTFLoader(manager);

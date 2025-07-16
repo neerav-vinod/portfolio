@@ -154,6 +154,22 @@
   font-size: 0.9rem;
 }
 
+/* For Chrome, Edge, and Safari */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.hide-scrollbar {
+  scrollbar-width: none; /* hides scrollbar */
+}
+
+/* General */
+.hide-scrollbar {
+  overflow: auto; /* or scroll, as needed */
+}
+
+
 /* Removes blue autofill background in Chrome */
 input:-webkit-autofill {
   box-shadow: 0 0 0px 1000px black inset !important;
@@ -227,6 +243,13 @@ input:focus {
   width: 30%;
   margin-top: 0.5%;
   height: 2%;
+}
+
+.intial_text{
+  z-index: 1000;
+  font-family:'VT323', monospace;
+  color: #c0c0c0;
+  background-color: #0000aa;
 }
 
 @media (max-width: 768px) {
