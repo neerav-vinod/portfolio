@@ -72,6 +72,10 @@
   border: 2px inset #fff;
 }
 
+.modal a{
+  color: white;
+}
+
 .util{
     display: none !important; 
 }
